@@ -4,12 +4,13 @@ RUN apk add --no-cache gcc g++ make git
 
 WORKDIR /app
 
-COPY go.mod go.sum ./
+COPY src/go.mod src/go.sum ./src/
+WORKDIR /app/src
 RUN go mod download
 
-COPY . .
+COPY src/. .
 
-RUN go build -o main .
+RUN go build -o /app/main .
 
 FROM alpine
 
