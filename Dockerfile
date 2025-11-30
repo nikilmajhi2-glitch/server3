@@ -1,10 +1,11 @@
-FROM golang:1.21-alpine AS builder
+FROM golang:1.24-alpine AS builder
 
 RUN apk add --no-cache gcc g++ make git
 
 WORKDIR /app
 
 COPY src/go.mod src/go.sum ./src/
+
 WORKDIR /app/src
 RUN go mod download
 
